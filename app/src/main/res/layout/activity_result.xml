@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimaryVariant"
+    tools:context=".ResultActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbarResultActivity"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/appBarResultActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextColor="@color/purple_700"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:expandedTitleTextColor="@color/purple_700"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:title="Category">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/main_activity_background_landscape" />
+
+            <Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <ImageButton
+                    android:id="@+id/icArrowBackResultActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/back_arrow"
+                    app:tint="@color/purple_700" />
+            </Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textViewTitleResult"
+        style="@style/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarResultActivity"
+        tools:text="Title" />
+
+    <ImageView
+        android:id="@+id/imageViewParticipants"
+        android:layout_width="@dimen/ic_size_width"
+        android:layout_height="@dimen/ic_size_height"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
+        tools:srcCompat="@drawable/ic_participants" />
+
+    <TextView
+        android:id="@+id/textViewPartipantsSubtitle"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/participants_subtitle"
+        app:layout_constraintStart_toEndOf="@id/imageViewParticipants"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitleResult" />
+
+    <TextView
+        android:id="@+id/textViewParticipantsNumber"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
+        tools:text="2" />
+
+    <ImageView
+        android:id="@+id/imageViewPrice"
+        android:layout_width="@dimen/ic_size_width"
+        android:layout_height="@dimen/ic_size_height"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
+        tools:srcCompat="@drawable/ic_price" />
+
+    <TextView
+        android:id="@+id/textViewSubtitlePrice"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/price_subtitle"
+        app:layout_constraintStart_toEndOf="@id/imageViewParticipants"
+        app:layout_constraintTop_toBottomOf="@id/textViewPartipantsSubtitle" />
+
+    <TextView
+        android:id="@+id/textViewPriceLevel"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
+        tools:text="Low" />
+
+    <ImageView
+        android:id="@+id/imageViewCategory"
+        android:layout_width="@dimen/ic_size_width"
+        android:layout_height="@dimen/ic_size_height"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitleCategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewSubtitleCategory"
+        tools:srcCompat="@drawable/ic_category" />
+
+    <TextView
+        android:id="@+id/textViewSubtitleCategory"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toEndOf="@id/imageViewCategory"
+        app:layout_constraintTop_toBottomOf="@id/textViewSubtitlePrice"
+        tools:text="Category" />
+
+    <Button
+        android:id="@+id/btnTryAnother"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:text="@string/btn_try_again"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/errorMessageResult"
+        style="@style/Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:text="@string/error_message_result"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarResultActivity" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="textViewTitleResult, imageViewParticipants, textViewPartipantsSubtitle, textViewParticipantsNumber, imageViewPrice, textViewSubtitlePrice, textViewPriceLevel" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="imageViewCategory, textViewSubtitleCategory" />
+</androidx.constraintlayout.widget.ConstraintLayout>
