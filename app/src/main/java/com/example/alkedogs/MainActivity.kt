@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         //Here we remove the toolbar only for this activity
         window.setDecorFitsSystemWindows(false)
         if (window.insetsController != null) {
+
             window.insetsController!!.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
             window.insetsController!!.systemBarsBehavior =
                 WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToTypesActivity() {
         val navigateToTypesActivities = Intent(this, TypesActivity::class.java)
+        navigateToTypesActivities.putExtra(getString(R.string.number_of_participants), binding.tvParticipants.text.toString().toInt())
         startActivity(navigateToTypesActivities)
     }
 }
