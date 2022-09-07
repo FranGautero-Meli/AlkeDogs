@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorPrimaryVariant"
+    tools:context=".TypesActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbarTypeActivity"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/appBarTypeActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleTextColor="@color/purple_700"
+                    app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
+                    app:expandedTitleTextColor="@color/purple_700"
+                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                    app:title="Activities">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/main_activity_background_landscape" />
+
+                        <Toolbar
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            app:layout_collapseMode="pin">
+
+                                <ImageButton
+                                    android:id="@+id/ic_random"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:background="@android:color/transparent"
+                                    android:src="@drawable/random_foreground"
+                                    app:tint="@color/purple_700" />
+                        </Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/typesRecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarTypeActivity"
+            app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

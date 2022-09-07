@@ -50,5 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToTypesActivity() {
+        val navigateToTypesActivities = Intent(this, TypesActivity::class.java)
+        startActivity(navigateToTypesActivities)
     }
 }
