@@ -3,12 +3,16 @@ package com.example.alkedogs
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import com.example.alkedogs.data.network.NotBoredApiService
+import com.example.alkedogs.data.network.RetrofitHelper
 import com.example.alkedogs.databinding.ActivityMainBinding
-
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +22,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        //Test pegada a la api
+        val NotBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
+
+        GlobalScope.launch {
+            val result = NotBoredApi.getRandomActivity(2)
+            Log.d("ayush: ", result.body().toString())
+        }
 
         //Here we remove the toolbar only for this activity
         window.setDecorFitsSystemWindows(false)
