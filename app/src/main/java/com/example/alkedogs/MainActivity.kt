@@ -23,15 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        //Test pegada a la api
-        val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
-
-        GlobalScope.launch {
-            val result = notBoredApi.getRandomActivity(2)
-            Log.d("ayush: ", result.body().toString())
-        }
-
         //Here we remove the toolbar only for this activity
         window.setDecorFitsSystemWindows(false)
         if (window.insetsController != null) {
