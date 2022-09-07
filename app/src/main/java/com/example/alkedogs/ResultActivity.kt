@@ -1,9 +1,15 @@
 package com.example.alkedogs
 
+
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.alkedogs.data.network.NotBoredApiService
+import com.example.alkedogs.data.network.RetrofitHelper
 import com.example.alkedogs.databinding.ActivityResultBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ResultActivity : AppCompatActivity() {
 
@@ -23,10 +29,29 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun callService() {
-        //si el servicio da ok
-        setUpViews(Activities("educational", 1, "leer un libro", 0.1F))
-        //si no trae resultados
-        setUpError()
+        val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
+
+
+        val type = intent.extras?.getString("category") ?: ""
+        val participants = intent.extras?.getInt("participants") ?: 0
+
+        CoroutineScope(Dispatchers.Main).launch{
+
+            try {
+                val result = notBoredApi.getActivity(participants, type)
+                val activity = result.body()
+                if(activity?.error != null){
+                    setUpViews(Activities(
+                        activity.type ?: "",
+                        activity.participants ?: 0,
+                        activity.activity ?: "",
+                        activity.price ?: 0F))
+                }else setUpError()
+            }catch(e: Exception){
+                setUpError()
+            }
+        }
+
     }
 
     private fun setUpError() {
@@ -69,7 +94,7 @@ class ResultActivity : AppCompatActivity() {
 
 
         binding.btnTryAnother.setOnClickListener {
-            TODO("llamar al servicio nuevamente")
+            callService()
         }
 
 
