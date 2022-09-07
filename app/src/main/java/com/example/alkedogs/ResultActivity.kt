@@ -32,8 +32,8 @@ class ResultActivity : AppCompatActivity() {
         val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
 
 
-        val type = intent.extras?.getString("category") ?: ""
-        val participants = intent.extras?.getInt("participants") ?: 0
+        val type = intent.extras?.getString("typeCategory") ?: ""
+        val participants = intent.extras?.getInt("numberOfParticipants") ?: 0
 
         CoroutineScope(Dispatchers.Main).launch{
 

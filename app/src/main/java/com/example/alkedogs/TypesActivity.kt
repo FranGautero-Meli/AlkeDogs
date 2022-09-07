@@ -2,7 +2,6 @@ package com.example.alkedogs
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.adapter.TypesAdapter
 import com.example.alkedogs.databinding.ActivityTypesBinding
@@ -43,13 +42,14 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
     }
 
     private fun getDataToResult(position : Int) {
-        val textCategory = listTypes[position]
-        val extras = Bundle()
-        extras.putString("category", textCategory)
-        val intentCategory = Intent(this, ResultActivity::class.java)
-        intentCategory.putExtras(extras)
-        startActivity(intentCategory)
+        val textTypeCategory = listTypes[position]
+        val navigateToResultActivity = Intent(this, ResultActivity::class.java).apply {
+            putExtra(getString(R.string.type_category), textTypeCategory)
+            putExtra(getString(R.string.number_of_participants), numberOfParticipants)
+        }
+        startActivity(navigateToResultActivity)
     }
+
 
     private fun getCategory(): List<String> {
         return listOf(

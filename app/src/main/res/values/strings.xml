@@ -11,6 +11,9 @@
     <string name="btn_try_again">Try Another</string>
     <string name="error_message_result">No activity found with the specified parameters</string>
     <string name="number_of_participants">numberOfParticipants</string>
+    <string name="type_category">typeCategory</string>
+
+
 
 
 </resources>
