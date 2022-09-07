@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 
 
         //Test pegada a la api
-        val NotBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
+        val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
 
         GlobalScope.launch {
-            val result = NotBoredApi.getRandomActivity(2)
+            val result = notBoredApi.getRandomActivity(2)
             Log.d("ayush: ", result.body().toString())
         }
 
