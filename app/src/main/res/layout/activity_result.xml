@@ -22,9 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:collapsedTitleTextColor="@color/purple_700"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
-            app:expandedTitleTextColor="@color/purple_700"
+            app:collapsedTitleTextColor="@android:color/white"
+            app:expandedTitleTextColor="@android:color/white"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="Category">
 
@@ -47,143 +46,191 @@
                     android:layout_marginStart="16dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_arrow"
-                    app:tint="@color/purple_700" />
+                    app:tint="@android:color/white" />
             </Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/textViewTitleResult"
-        style="@style/Title"
-        android:layout_width="wrap_content"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnTryAnother"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarResultActivity"
-        tools:text="Title" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarResultActivity"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <ImageView
-        android:id="@+id/imageViewParticipants"
-        android:layout_width="@dimen/ic_size_width"
-        android:layout_height="@dimen/ic_size_height"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
-        android:src="@drawable/ic_participants" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarResultActivity">
 
-    <TextView
-        android:id="@+id/textViewPartipantsSubtitle"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/participants_subtitle"
-        app:layout_constraintStart_toEndOf="@id/imageViewParticipants"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitleResult" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
 
-    <TextView
-        android:id="@+id/textViewParticipantsNumber"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
-        tools:text="2" />
+            <TextView
+                android:id="@+id/textViewTitleResult"
+                style="@style/Title"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/purple_700"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title" />
 
-    <ImageView
-        android:id="@+id/imageViewPrice"
-        android:layout_width="@dimen/ic_size_width"
-        android:layout_height="@dimen/ic_size_height"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
-        android:elevation="10dp"
-        android:src="@drawable/ic_price" />
+            <ImageView
+                android:id="@+id/imageViewParticipants"
+                android:layout_width="@dimen/ic_size_width"
+                android:layout_height="@dimen/ic_size_height"
+                android:src="@drawable/ic_participants"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
+                app:tint="@color/purple_200" />
 
-    <TextView
-        android:id="@+id/textViewSubtitlePrice"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/price_subtitle"
-        app:layout_constraintStart_toEndOf="@id/imageViewParticipants"
-        app:layout_constraintTop_toBottomOf="@id/textViewPartipantsSubtitle" />
+            <TextView
+                android:id="@+id/textViewPartipantsSubtitle"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/participants_subtitle"
+                app:layout_constraintStart_toEndOf="@id/imageViewParticipants"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitleResult" />
 
-    <TextView
-        android:id="@+id/textViewPriceLevel"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
-        tools:text="Low" />
+            <TextView
+                android:id="@+id/textViewParticipantsNumber"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
+                tools:text="2" />
 
-    <ImageView
-        android:id="@+id/imageViewCategory"
-        android:layout_width="@dimen/ic_size_width"
-        android:layout_height="@dimen/ic_size_height"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitleCategory"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewSubtitleCategory"
-        android:src="@drawable/ic_category" />
+            <ImageView
+                android:id="@+id/imageViewPrice"
+                android:layout_width="@dimen/ic_size_width"
+                android:layout_height="@dimen/ic_size_height"
+                android:elevation="10dp"
+                android:src="@drawable/ic_price"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
+                app:tint="@color/purple_200" />
 
-    <TextView
-        android:id="@+id/textViewSubtitleCategory"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toEndOf="@id/imageViewCategory"
-        app:layout_constraintTop_toBottomOf="@id/textViewSubtitlePrice"
-        tools:text="Category" />
+            <TextView
+                android:id="@+id/textViewSubtitlePrice"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/price_subtitle"
+                app:layout_constraintStart_toEndOf="@id/imageViewParticipants"
+                app:layout_constraintTop_toBottomOf="@id/textViewPartipantsSubtitle" />
 
-    <Button
+            <TextView
+                android:id="@+id/textViewPriceLevel"
+                style="@style/Text"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:breakStrategy="balanced"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
+                tools:text="Low" />
+
+            <ImageView
+                android:id="@+id/imageViewCategory"
+                android:layout_width="@dimen/ic_size_width"
+                android:layout_height="@dimen/ic_size_height"
+                android:src="@drawable/ic_category"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitleCategory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewSubtitleCategory"
+                app:tint="@color/purple_200" />
+
+            <TextView
+                android:id="@+id/textViewSubtitleCategory"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewCategory"
+                app:layout_constraintTop_toBottomOf="@id/textViewSubtitlePrice"
+                tools:text="Category" />
+
+            <TextView
+                android:id="@+id/errorMessageResult"
+                style="@style/Text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:text="@string/error_message_result"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="textViewTitleResult, imageViewParticipants, textViewPartipantsSubtitle, textViewParticipantsNumber, imageViewPrice, textViewSubtitlePrice, textViewPriceLevel" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="imageViewCategory, textViewSubtitleCategory" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnTryAnother"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_width="165dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@android:color/white"
         android:text="@string/btn_try_again"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/errorMessageResult"
-        style="@style/Text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:text="@string/error_message_result"
-        android:visibility="gone"
+        android:textAlignment="center"
+        android:textColor="@color/purple_200"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarResultActivity" />
+        app:layout_constraintTop_toBottomOf="@id/cardview"
+        app:rippleColor="@color/purple_200" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="textViewTitleResult, imageViewParticipants, textViewPartipantsSubtitle, textViewParticipantsNumber, imageViewPrice, textViewSubtitlePrice, textViewPriceLevel" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="imageViewCategory, textViewSubtitleCategory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

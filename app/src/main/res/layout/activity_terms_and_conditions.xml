@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:collapsedTitleTextColor="@color/purple_700"
-            app:expandedTitleTextColor="@color/purple_700"
+            app:collapsedTitleTextColor="@android:color/white"
+            app:expandedTitleTextColor="@android:color/white"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="@string/terms_and_conditions" >
@@ -40,7 +40,7 @@
                     android:layout_gravity="end"
                     android:layout_marginEnd="16dp"
                     android:background="@android:color/transparent"
-                    app:tint="@color/purple_700"
+                    app:tint="@android:color/white"
                     android:src="@android:drawable/ic_menu_close_clear_cancel" />
             </Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>

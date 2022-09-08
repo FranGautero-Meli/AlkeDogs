@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.R
 import com.example.alkedogs.databinding.ActivityMainBinding
@@ -51,7 +52,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToTypesActivity() {
         val navigateToTypesActivities = Intent(this, TypesActivity::class.java)
-        navigateToTypesActivities.putExtra(getString(R.string.number_of_participants), binding.tvParticipants.text.toString().toInt())
-        startActivity(navigateToTypesActivities)
+        val numberOfParticipants = binding.tvParticipants.text.toString()
+        if (numberOfParticipants == "" || numberOfParticipants.toInt() !in 11 downTo 0) {
+            Toast.makeText(this, "Please, insert a number between 1 to 10", Toast.LENGTH_LONG)
+                .show()
+        } else {
+            navigateToTypesActivities.putExtra(
+                getString(R.string.number_of_participants),
+                numberOfParticipants.toInt()
+            )
+            startActivity(navigateToTypesActivities)
+        }
+
+
     }
 }

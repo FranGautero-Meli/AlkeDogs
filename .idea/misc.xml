@@ -7,12 +7,11 @@
         <entry key="app/src/main/res/drawable/back_arrow.xml" value="0.3195" />
         <entry key="app/src/main/res/drawable/random_background.xml" value="0.3195" />
         <entry key="app/src/main/res/drawable/random_foreground.xml" value="0.3195" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_result.xml" value="0.2558876811594203" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3497222900390625" />
+        <entry key="app/src/main/res/layout/activity_result.xml" value="0.2558876811594203" />
         <entry key="app/src/main/res/layout/activity_terms_and_conditions.xml" value="0.2894149780273438" />
-        <entry key="app/src/main/res/layout/activity_types.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/card_view_design.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_types.xml" value="0.22323303222656254" />
+        <entry key="app/src/main/res/layout/card_view_design.xml" value="0.19872741699218752" />
       </map>
     </option>
   </component>

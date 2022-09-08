@@ -2,6 +2,8 @@ package com.example.alkedogs.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.R
 import com.example.alkedogs.ui.adapter.TypesAdapter
@@ -26,6 +28,16 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
 
         typesAdapter = TypesAdapter(listTypes)
         binding.typesRecyclerview.adapter = typesAdapter
+
+        //Here we remove the toolbar only for this activity
+        window.setDecorFitsSystemWindows(false)
+        if (window.insetsController != null) {
+
+            window.insetsController!!.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+            window.insetsController!!.systemBarsBehavior =
+                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+
 
         setBackButtonListener()
         setUpRandomButton()

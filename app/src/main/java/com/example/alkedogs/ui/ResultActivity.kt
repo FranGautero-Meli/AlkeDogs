@@ -4,6 +4,8 @@ package com.example.alkedogs.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.R
 import com.example.alkedogs.data.network.NotBoredApiService
@@ -24,6 +26,15 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Here we remove the toolbar only for this activity
+        window.setDecorFitsSystemWindows(false)
+        if (window.insetsController != null) {
+
+            window.insetsController!!.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+            window.insetsController!!.systemBarsBehavior =
+                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
 
         setBackButtonListener()
         callService()
@@ -80,7 +91,7 @@ class ResultActivity : AppCompatActivity() {
             binding.groupCategory.visibility = View.VISIBLE
         }
 
-        binding.textViewTitleResult.text = game.title
+        binding.textViewTitleResult.text = game.title.replaceFirstChar { char -> char.uppercase() }
         binding.textViewParticipantsNumber.text = game.participants.toString()
 
         val price = game.price.let {
