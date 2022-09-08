@@ -87,11 +87,13 @@ class ResultActivity : AppCompatActivity() {
         //we check if the category was specified or not
         if (typeCategory.isNotBlank()) {
             //If the category was specified the title is the category
-            binding.appBarResultActivity.title = game.category
+            binding.appBarResultActivity.title =
+                game.category.replaceFirstChar { char -> char.uppercase() }
         } else {
             //If the category wasn't specified the title is Random and we modified the UI to show the category part
             binding.appBarResultActivity.title = getString(R.string.random_title)
-            binding.textViewSubtitleCategory.text = game.category
+            binding.textViewSubtitleCategory.text =
+                game.category.replaceFirstChar { char -> char.uppercase() }
             binding.groupCategory.visibility = View.VISIBLE
         }
 
