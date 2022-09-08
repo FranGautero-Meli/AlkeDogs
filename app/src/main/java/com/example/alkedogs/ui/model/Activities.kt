@@ -1,4 +1,4 @@
-package com.example.alkedogs
+package com.example.alkedogs.ui.model
 
 data class Activities(
     val category: String,

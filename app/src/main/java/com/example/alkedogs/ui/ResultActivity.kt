@@ -1,13 +1,15 @@
-package com.example.alkedogs
+package com.example.alkedogs.ui
 
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.alkedogs.R
 import com.example.alkedogs.data.network.NotBoredApiService
 import com.example.alkedogs.data.network.RetrofitHelper
 import com.example.alkedogs.databinding.ActivityResultBinding
+import com.example.alkedogs.ui.model.Activities
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

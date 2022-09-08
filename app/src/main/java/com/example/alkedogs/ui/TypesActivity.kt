@@ -1,9 +1,10 @@
-package com.example.alkedogs
+package com.example.alkedogs.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.alkedogs.adapter.TypesAdapter
+import com.example.alkedogs.R
+import com.example.alkedogs.ui.adapter.TypesAdapter
 import com.example.alkedogs.databinding.ActivityTypesBinding
 import com.example.alkedogs.util.OnItemClickListenerType
 

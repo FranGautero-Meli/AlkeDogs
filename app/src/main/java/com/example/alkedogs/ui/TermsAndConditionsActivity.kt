@@ -1,4 +1,4 @@
-package com.example.alkedogs
+package com.example.alkedogs.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

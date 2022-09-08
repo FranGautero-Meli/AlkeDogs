@@ -1,10 +1,11 @@
-package com.example.alkedogs
+package com.example.alkedogs.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import com.example.alkedogs.R
 import com.example.alkedogs.databinding.ActivityMainBinding
 
 

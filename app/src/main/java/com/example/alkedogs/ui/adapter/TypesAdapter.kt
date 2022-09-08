@@ -1,4 +1,4 @@
-package com.example.alkedogs.adapter
+package com.example.alkedogs.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
