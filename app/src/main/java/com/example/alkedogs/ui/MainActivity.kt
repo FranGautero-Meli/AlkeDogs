@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToTypesActivity() {
         val navigateToTypesActivities = Intent(this, TypesActivity::class.java)
         val numberOfParticipants = binding.tvParticipants.text.toString()
-        if (numberOfParticipants == "" || numberOfParticipants.toInt() !in 11 downTo 0) {
+        if (numberOfParticipants.isEmpty() || numberOfParticipants.toInt() !in 10 downTo 1) {
             Toast.makeText(this, "Please, insert a number between 1 to 10", Toast.LENGTH_LONG)
                 .show()
         } else {
