@@ -40,6 +40,15 @@
                             app:layout_collapseMode="pin">
 
                                 <ImageButton
+                                    android:id="@+id/ic_back_types"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:background="@android:color/transparent"
+                                    android:src="@drawable/back_arrow"
+                                    app:tint="@color/purple_700" />
+
+                                <ImageButton
                                     android:id="@+id/ic_random"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"

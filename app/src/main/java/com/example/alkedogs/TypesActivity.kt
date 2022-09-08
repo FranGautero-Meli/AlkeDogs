@@ -20,31 +20,38 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
         binding = ActivityTypesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        numberOfParticipants = intent.getIntExtra(getString(R.string.number_of_participants),0)
+        numberOfParticipants = intent.getIntExtra(getString(R.string.number_of_participants), 0)
         listTypes = getCategory()
 
         typesAdapter = TypesAdapter(listTypes)
         binding.typesRecyclerview.adapter = typesAdapter
 
+        setBackButtonListener()
         setUpRandomButton()
     }
 
+    private fun setBackButtonListener() {
+        binding.icBackTypes.setOnClickListener { onBackPressed() }
+    }
+
     override fun onItemClick(position: Int) {
-
         getDataToResult(position)
-
     }
 
     private fun setUpRandomButton() {
         binding.icRandom.setOnClickListener {
-            //Implementar logica ramdom
+            navigateToResultActivity("", numberOfParticipants)
         }
     }
 
-    private fun getDataToResult(position : Int) {
+    private fun getDataToResult(position: Int) {
         val textTypeCategory = listTypes[position]
+        navigateToResultActivity(textTypeCategory, numberOfParticipants)
+    }
+
+    private fun navigateToResultActivity(typeCategory: String?, numberOfParticipants: Int?) {
         val navigateToResultActivity = Intent(this, ResultActivity::class.java).apply {
-            putExtra(getString(R.string.type_category), textTypeCategory)
+            putExtra(getString(R.string.type_category), typeCategory?.lowercase())
             putExtra(getString(R.string.number_of_participants), numberOfParticipants)
         }
         startActivity(navigateToResultActivity)
@@ -61,7 +68,7 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
             "Cooking",
             "Relaxation",
             "Music",
-            "busywork"
+            "Busywork"
         )
     }
 }

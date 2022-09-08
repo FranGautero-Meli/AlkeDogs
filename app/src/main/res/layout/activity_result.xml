@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewPartipantsSubtitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewPartipantsSubtitle"
-        tools:srcCompat="@drawable/ic_participants" />
+        android:src="@drawable/ic_participants" />
 
     <TextView
         android:id="@+id/textViewPartipantsSubtitle"
@@ -103,7 +103,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitlePrice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewSubtitlePrice"
-        tools:srcCompat="@drawable/ic_price" />
+        android:elevation="10dp"
+        android:src="@drawable/ic_price" />
 
     <TextView
         android:id="@+id/textViewSubtitlePrice"
@@ -135,7 +136,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewSubtitleCategory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewSubtitleCategory"
-        tools:srcCompat="@drawable/ic_category" />
+        android:src="@drawable/ic_category" />
 
     <TextView
         android:id="@+id/textViewSubtitleCategory"

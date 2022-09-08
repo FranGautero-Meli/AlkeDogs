@@ -12,8 +12,7 @@
     <string name="error_message_result">No activity found with the specified parameters</string>
     <string name="number_of_participants">numberOfParticipants</string>
     <string name="type_category">typeCategory</string>
-
-
+    <string name="random_title">Random</string>
 
 
 </resources>

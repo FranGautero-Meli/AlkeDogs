@@ -2,6 +2,7 @@ package com.example.alkedogs
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.data.network.NotBoredApiService
@@ -14,6 +15,8 @@ import kotlinx.coroutines.launch
 class ResultActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityResultBinding
+    private var typeCategory = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,23 +34,25 @@ class ResultActivity : AppCompatActivity() {
     private fun callService() {
         val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
 
-
-        val type = intent.extras?.getString("typeCategory") ?: ""
+        typeCategory = intent.extras?.getString("typeCategory") ?: ""
         val participants = intent.extras?.getInt("numberOfParticipants") ?: 0
 
-        CoroutineScope(Dispatchers.Main).launch{
-
+        CoroutineScope(Dispatchers.Main).launch {
             try {
-                val result = notBoredApi.getActivity(participants, type)
-                val activity = result.body()
-                if(activity?.error != null){
-                    setUpViews(Activities(
-                        activity.type ?: "",
-                        activity.participants ?: 0,
-                        activity.activity ?: "",
-                        activity.price ?: 0F))
-                }else setUpError()
-            }catch(e: Exception){
+                val result = notBoredApi.getActivity(participants, typeCategory)
+                Log.d("Service", result.toString())
+                val resultBody = result.body()
+                if (resultBody?.error == null) {
+                    setUpViews(
+                        Activities(
+                            resultBody?.type ?: "",
+                            resultBody?.participants ?: 1,
+                            resultBody?.activity ?: "",
+                            resultBody?.price ?: 1F
+                        )
+                    )
+                } else setUpError()
+            } catch (e: Exception) {
                 setUpError()
             }
         }
@@ -55,31 +60,26 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun setUpError() {
+        binding.appBarResultActivity.title = "Activity Not Found"
         binding.groupContent.visibility = View.GONE
         binding.groupCategory.visibility = View.GONE
         binding.errorMessageResult.visibility = View.VISIBLE
     }
 
-    data class Activities(
-        val category: String,
-        val participants: Int,
-        val title: String,
-        val price: Float
-    )
-
     private fun setUpViews(game: Activities) {
         //chequear si la categoria se envió o no en el servicio para definir estos dos textos:
-
-        //Titulo de la activity, si se mando categoría es la categoría enviada, si no es RANDOM
-        binding.appBarResultActivity.title = game.category
-        //visibilidad o no del renglón en donde se muestra la categoría (SÓLO si no envió en el servicio, es decir, cuando es random)
-        binding.textViewSubtitleCategory.text = game.category
-        binding.groupCategory.visibility = View.VISIBLE
-
-
-
+        if (typeCategory.isNotBlank()) {
+            //Titulo de la activity, si se mando categoría es la categoría enviada, si no es RANDOM
+            binding.appBarResultActivity.title = game.category
+        } else {
+            //visibilidad o no del renglón en donde se muestra la categoría (SÓLO si no envió en el servicio, es decir, cuando es random)
+            binding.appBarResultActivity.title = getString(R.string.random_title)
+            binding.textViewSubtitleCategory.text = game.category
+            binding.groupCategory.visibility = View.VISIBLE
+        }
 
         binding.textViewTitleResult.text = game.title
+        binding.textViewParticipantsNumber.text = game.participants.toString()
 
         val price = game.price.let {
             when {
@@ -91,7 +91,6 @@ class ResultActivity : AppCompatActivity() {
             }
         }
         binding.textViewPriceLevel.text = price
-
 
         binding.btnTryAnother.setOnClickListener {
             callService()
