@@ -8,5 +8,8 @@ import retrofit2.http.Query
 
 interface NotBoredApiService {
     @GET("activity")
-    suspend fun getActivity(@Query("participants") participants: Int, @Query("type") type:String):Response<NotBoredActivityResponse>
+    suspend fun getActivity(
+        @Query("participants") participants: Int,
+        @Query("type") type: String
+    ): Response<NotBoredActivityResponse>
 }

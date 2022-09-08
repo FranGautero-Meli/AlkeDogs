@@ -6,8 +6,8 @@ import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.R
-import com.example.alkedogs.ui.adapter.TypesAdapter
 import com.example.alkedogs.databinding.ActivityTypesBinding
+import com.example.alkedogs.ui.adapter.TypesAdapter
 import com.example.alkedogs.util.OnItemClickListenerType
 
 
@@ -23,9 +23,10 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
         binding = ActivityTypesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Here the parameter number of participants sent by the main activity is taken
         numberOfParticipants = intent.getIntExtra(getString(R.string.number_of_participants), 0)
-        listTypes = getCategory()
 
+        listTypes = getCategory()
         typesAdapter = TypesAdapter(listTypes)
         binding.typesRecyclerview.adapter = typesAdapter
 
@@ -43,6 +44,7 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
         setUpRandomButton()
     }
 
+    //Function that set the action of back button
     private fun setBackButtonListener() {
         binding.icBackTypes.setOnClickListener { onBackPressed() }
     }
@@ -51,16 +53,20 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
         getDataToResult(position)
     }
 
+    //Function that set te action of random button
     private fun setUpRandomButton() {
         binding.icRandom.setOnClickListener {
             navigateToResultActivity("", numberOfParticipants)
         }
     }
 
+    //Function that takes the position of the item that was clicked and call the navigate function
+    // with this parameter and numberOfParticipants parameter too
     private fun getDataToResult(position: Int) {
         val textTypeCategory = listTypes[position]
         navigateToResultActivity(textTypeCategory, numberOfParticipants)
     }
+
 
     private fun navigateToResultActivity(typeCategory: String?, numberOfParticipants: Int?) {
         val navigateToResultActivity = Intent(this, ResultActivity::class.java).apply {

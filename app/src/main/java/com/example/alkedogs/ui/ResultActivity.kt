@@ -2,7 +2,6 @@ package com.example.alkedogs.ui
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
@@ -40,21 +39,25 @@ class ResultActivity : AppCompatActivity() {
         callService()
     }
 
+    //Function that set the action of back button
     private fun setBackButtonListener() {
         binding.icArrowBackResultActivity.setOnClickListener { onBackPressed() }
     }
 
+    //Function that makes the api call
     private fun callService() {
         val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
 
+        //Here we take the category parameters and participants sent by the other activities
         typeCategory = intent.extras?.getString("typeCategory") ?: ""
         val participants = intent.extras?.getInt("numberOfParticipants") ?: 0
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val result = notBoredApi.getActivity(participants, typeCategory)
-                Log.d("Service", result.toString())
                 val resultBody = result.body()
+                //If the error field is null (means that result is OK) we setUp view with data
+                //Else, we show an error message
                 if (resultBody?.error == null) {
                     setUpViews(
                         Activities(
@@ -69,9 +72,10 @@ class ResultActivity : AppCompatActivity() {
                 setUpError()
             }
         }
-
     }
 
+    //We setUp an error:
+    //We hide the part of the UI that shows the data and show the error message
     private fun setUpError() {
         binding.appBarResultActivity.title = "Activity Not Found"
         binding.groupContent.visibility = View.GONE
@@ -80,12 +84,12 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun setUpViews(game: Activities) {
-        //chequear si la categoria se envió o no en el servicio para definir estos dos textos:
+        //we check if the category was specified or not
         if (typeCategory.isNotBlank()) {
-            //Titulo de la activity, si se mando categoría es la categoría enviada, si no es RANDOM
+            //If the category was specified the title is the category
             binding.appBarResultActivity.title = game.category
         } else {
-            //visibilidad o no del renglón en donde se muestra la categoría (SÓLO si no envió en el servicio, es decir, cuando es random)
+            //If the category wasn't specified the title is Random and we modified the UI to show the category part
             binding.appBarResultActivity.title = getString(R.string.random_title)
             binding.textViewSubtitleCategory.text = game.category
             binding.groupCategory.visibility = View.VISIBLE
@@ -94,6 +98,7 @@ class ResultActivity : AppCompatActivity() {
         binding.textViewTitleResult.text = game.title.replaceFirstChar { char -> char.uppercase() }
         binding.textViewParticipantsNumber.text = game.participants.toString()
 
+        //Conditional to define the price range according to the received float
         val price = game.price.let {
             when {
                 it == 0F -> "Free"
