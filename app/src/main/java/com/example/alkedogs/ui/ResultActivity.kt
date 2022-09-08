@@ -46,30 +46,34 @@ class ResultActivity : AppCompatActivity() {
 
     //Function that makes the api call
     private fun callService() {
-        val notBoredApi = RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
 
         //Here we take the category parameters and participants sent by the other activities
         typeCategory = intent.extras?.getString("typeCategory") ?: ""
         val participants = intent.extras?.getInt("numberOfParticipants") ?: 0
 
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             try {
+                val notBoredApi =
+                    RetrofitHelper.getInstance().create(NotBoredApiService::class.java)
                 val result = notBoredApi.getActivity(participants, typeCategory)
                 val resultBody = result.body()
                 //If the error field is null (means that result is OK) we setUp view with data
                 //Else, we show an error message
-                if (resultBody?.error == null) {
-                    setUpViews(
-                        Activities(
-                            resultBody?.type ?: "",
-                            resultBody?.participants ?: 1,
-                            resultBody?.activity ?: "",
-                            resultBody?.price ?: 1F
+                runOnUiThread {
+                    if (resultBody?.error == null) {
+                        setUpViews(
+                            Activities(
+                                resultBody?.type ?: "",
+                                resultBody?.participants ?: 1,
+                                resultBody?.activity ?: "",
+                                resultBody?.price ?: 1F
+                            )
                         )
-                    )
-                } else setUpError()
+                    } else setUpError()
+                }
             } catch (e: Exception) {
-                setUpError()
+                runOnUiThread { setUpError() }
+
             }
         }
     }
