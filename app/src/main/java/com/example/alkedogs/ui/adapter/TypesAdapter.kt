@@ -7,13 +7,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.alkedogs.R
-import com.example.alkedogs.util.OnItemClickListenerType
 
 
-class TypesAdapter(private val typeList: List<String>) :
+class TypesAdapter(private val typeList: List<String>, val clickListener: (Int) -> Unit) :
     RecyclerView.Adapter<TypesAdapter.ViewHolder>() {
-
-    private var typelistener: OnItemClickListenerType? = null
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,9 +18,7 @@ class TypesAdapter(private val typeList: List<String>) :
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_design, parent, false)
-        if (parent.context is OnItemClickListenerType) {
-            typelistener = parent.context as OnItemClickListenerType
-        }
+
         return ViewHolder(view)
     }
 
@@ -31,13 +26,11 @@ class TypesAdapter(private val typeList: List<String>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val itemsTypes = typeList[position]
-
         // sets the text to the textview from our itemHolder class
         holder.textView.text = itemsTypes
         holder.carView.setOnClickListener {
-            typelistener?.onItemClick(position)
+            clickListener(position)
         }
-
     }
 
     // return the number of the items in the list
@@ -48,6 +41,6 @@ class TypesAdapter(private val typeList: List<String>) :
     // Holds the views for adding it to text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val textView: TextView = itemView.findViewById(R.id.category)
-        val carView : CardView = itemView.findViewById(R.id.card_view)
+        val carView: CardView = itemView.findViewById(R.id.card_view)
     }
 }

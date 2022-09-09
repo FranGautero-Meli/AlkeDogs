@@ -8,13 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.alkedogs.R
 import com.example.alkedogs.databinding.ActivityTypesBinding
 import com.example.alkedogs.ui.adapter.TypesAdapter
-import com.example.alkedogs.util.OnItemClickListenerType
 
 
-class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
+class TypesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTypesBinding
-    private lateinit var typesAdapter: TypesAdapter
     private lateinit var listTypes: List<String>
     private var numberOfParticipants:Int = 0
 
@@ -27,8 +25,15 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
         numberOfParticipants = intent.getIntExtra(getString(R.string.number_of_participants), 0)
 
         listTypes = getCategory()
-        typesAdapter = TypesAdapter(listTypes)
-        binding.typesRecyclerview.adapter = typesAdapter
+
+        //listener to Click in the RecyclerView
+        fun appClickListener(position: Int) {
+            getDataToResult(position)
+        }
+
+        binding.typesRecyclerview.adapter = TypesAdapter(listTypes, clickListener = {
+            appClickListener(it)
+        })
 
         //Here we remove the toolbar only for this activity
         window.setDecorFitsSystemWindows(false)
@@ -47,10 +52,6 @@ class TypesActivity : AppCompatActivity(), OnItemClickListenerType {
     //Function that set the action of back button
     private fun setBackButtonListener() {
         binding.icBackTypes.setOnClickListener { onBackPressed() }
-    }
-
-    override fun onItemClick(position: Int) {
-        getDataToResult(position)
     }
 
     //Function that set te action of random button
